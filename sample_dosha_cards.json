@@ -1,0 +1,702 @@
+[
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 79.0,
+      "spo2": 98.0,
+      "temperature_c": 36.5
+    },
+    "prediction": {
+      "dosha_label": "kapha (3.0)",
+      "dosha_predicted": "kapha",
+      "confidence_level": "medium",
+      "recommendation_strength": "moderate"
+    },
+    "recommendation": {
+      "herbs": [
+        "Ginger",
+        "Triphala",
+        "Cinnamon"
+      ],
+      "diet_support": [
+        "Light warm meals",
+        "Reduce heavy/oily foods",
+        "Avoid overeating",
+        "Prefer stimulating spices in moderation"
+      ],
+      "lifestyle_support": [
+        "Daily exercise",
+        "Active routine",
+        "Avoid oversleeping",
+        "Warm water intake"
+      ],
+      "note": "Stimulating and lightening support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize light diet, movement, and avoid heavy meals. Prediction confidence is moderate."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 76.0,
+      "spo2": 95.0,
+      "temperature_c": 36.611111111111114
+    },
+    "prediction": {
+      "dosha_label": "vata (1.0)",
+      "dosha_predicted": "vata",
+      "confidence_level": "low",
+      "recommendation_strength": "light"
+    },
+    "recommendation": {
+      "herbs": [
+        "Ashwagandha",
+        "Brahmi",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Warm cooked meals",
+        "Soups and khichdi",
+        "Regular meal timing",
+        "Avoid excess cold/dry foods"
+      ],
+      "lifestyle_support": [
+        "Good sleep routine",
+        "Gentle yoga",
+        "Stress reduction",
+        "Warm hydration"
+      ],
+      "note": "Grounding and nourishing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize rest, warmth, and regular meals. Prediction confidence is low, so treat this as a mild suggestion."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 86.0,
+      "spo2": 93.0,
+      "temperature_c": 36.611111111111114
+    },
+    "prediction": {
+      "dosha_label": "vata (1.0)",
+      "dosha_predicted": "vata",
+      "confidence_level": "low",
+      "recommendation_strength": "light"
+    },
+    "recommendation": {
+      "herbs": [
+        "Ashwagandha",
+        "Brahmi",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Warm cooked meals",
+        "Soups and khichdi",
+        "Regular meal timing",
+        "Avoid excess cold/dry foods"
+      ],
+      "lifestyle_support": [
+        "Good sleep routine",
+        "Gentle yoga",
+        "Stress reduction",
+        "Warm hydration"
+      ],
+      "note": "Grounding and nourishing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize rest, warmth, and regular meals. Prediction confidence is low, so treat this as a mild suggestion."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 86.0,
+      "spo2": 98.0,
+      "temperature_c": 36.888888888888886
+    },
+    "prediction": {
+      "dosha_label": "pitta (3.0)",
+      "dosha_predicted": "pitta",
+      "confidence_level": "medium",
+      "recommendation_strength": "moderate"
+    },
+    "recommendation": {
+      "herbs": [
+        "Guduchi",
+        "Amla",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Cooling foods",
+        "Avoid overly spicy/oily meals",
+        "Hydration",
+        "Fresh fruits and lighter meals"
+      ],
+      "lifestyle_support": [
+        "Heat management",
+        "Moderate exercise",
+        "Relaxation",
+        "Avoid overexertion"
+      ],
+      "note": "Cooling and soothing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize cooling foods, hydration, and avoid excess heat. Prediction confidence is moderate."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 85.0,
+      "spo2": 98.0,
+      "temperature_c": 36.77777777777778
+    },
+    "prediction": {
+      "dosha_label": "kapha (3.0)",
+      "dosha_predicted": "kapha",
+      "confidence_level": "medium",
+      "recommendation_strength": "moderate"
+    },
+    "recommendation": {
+      "herbs": [
+        "Ginger",
+        "Triphala",
+        "Cinnamon"
+      ],
+      "diet_support": [
+        "Light warm meals",
+        "Reduce heavy/oily foods",
+        "Avoid overeating",
+        "Prefer stimulating spices in moderation"
+      ],
+      "lifestyle_support": [
+        "Daily exercise",
+        "Active routine",
+        "Avoid oversleeping",
+        "Warm water intake"
+      ],
+      "note": "Stimulating and lightening support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize light diet, movement, and avoid heavy meals. Prediction confidence is moderate."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 86.0,
+      "spo2": 94.0,
+      "temperature_c": 36.72222222222222
+    },
+    "prediction": {
+      "dosha_label": "vata (1.0)",
+      "dosha_predicted": "vata",
+      "confidence_level": "low",
+      "recommendation_strength": "light"
+    },
+    "recommendation": {
+      "herbs": [
+        "Ashwagandha",
+        "Brahmi",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Warm cooked meals",
+        "Soups and khichdi",
+        "Regular meal timing",
+        "Avoid excess cold/dry foods"
+      ],
+      "lifestyle_support": [
+        "Good sleep routine",
+        "Gentle yoga",
+        "Stress reduction",
+        "Warm hydration"
+      ],
+      "note": "Grounding and nourishing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize rest, warmth, and regular meals. Prediction confidence is low, so treat this as a mild suggestion."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 93.0,
+      "spo2": 95.0,
+      "temperature_c": 37.22222222222222
+    },
+    "prediction": {
+      "dosha_label": "vata (3.0)",
+      "dosha_predicted": "vata",
+      "confidence_level": "medium",
+      "recommendation_strength": "moderate"
+    },
+    "recommendation": {
+      "herbs": [
+        "Ashwagandha",
+        "Brahmi",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Warm cooked meals",
+        "Soups and khichdi",
+        "Regular meal timing",
+        "Avoid excess cold/dry foods"
+      ],
+      "lifestyle_support": [
+        "Good sleep routine",
+        "Gentle yoga",
+        "Stress reduction",
+        "Warm hydration"
+      ],
+      "note": "Grounding and nourishing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize rest, warmth, and regular meals. Prediction confidence is moderate."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 96.0,
+      "spo2": 100.0,
+      "temperature_c": 36.94444444444444
+    },
+    "prediction": {
+      "dosha_label": "pitta (4.0)",
+      "dosha_predicted": "pitta",
+      "confidence_level": "high",
+      "recommendation_strength": "strong"
+    },
+    "recommendation": {
+      "herbs": [
+        "Guduchi",
+        "Amla",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Cooling foods",
+        "Avoid overly spicy/oily meals",
+        "Hydration",
+        "Fresh fruits and lighter meals"
+      ],
+      "lifestyle_support": [
+        "Heat management",
+        "Moderate exercise",
+        "Relaxation",
+        "Avoid overexertion"
+      ],
+      "note": "Cooling and soothing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize cooling foods, hydration, and avoid excess heat. Prediction confidence is high within this prototype rule base."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 91.0,
+      "spo2": 99.0,
+      "temperature_c": 36.72222222222222
+    },
+    "prediction": {
+      "dosha_label": "kapha (3.0)",
+      "dosha_predicted": "kapha",
+      "confidence_level": "medium",
+      "recommendation_strength": "moderate"
+    },
+    "recommendation": {
+      "herbs": [
+        "Ginger",
+        "Triphala",
+        "Cinnamon"
+      ],
+      "diet_support": [
+        "Light warm meals",
+        "Reduce heavy/oily foods",
+        "Avoid overeating",
+        "Prefer stimulating spices in moderation"
+      ],
+      "lifestyle_support": [
+        "Daily exercise",
+        "Active routine",
+        "Avoid oversleeping",
+        "Warm water intake"
+      ],
+      "note": "Stimulating and lightening support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize light diet, movement, and avoid heavy meals. Prediction confidence is moderate."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 77.0,
+      "spo2": 98.0,
+      "temperature_c": 37.05555555555556
+    },
+    "prediction": {
+      "dosha_label": "pitta (3.0)",
+      "dosha_predicted": "pitta",
+      "confidence_level": "medium",
+      "recommendation_strength": "moderate"
+    },
+    "recommendation": {
+      "herbs": [
+        "Guduchi",
+        "Amla",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Cooling foods",
+        "Avoid overly spicy/oily meals",
+        "Hydration",
+        "Fresh fruits and lighter meals"
+      ],
+      "lifestyle_support": [
+        "Heat management",
+        "Moderate exercise",
+        "Relaxation",
+        "Avoid overexertion"
+      ],
+      "note": "Cooling and soothing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize cooling foods, hydration, and avoid excess heat. Prediction confidence is moderate."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 87.0,
+      "spo2": 97.0,
+      "temperature_c": 36.55555555555556
+    },
+    "prediction": {
+      "dosha_label": "pitta (1.0)",
+      "dosha_predicted": "pitta",
+      "confidence_level": "low",
+      "recommendation_strength": "light"
+    },
+    "recommendation": {
+      "herbs": [
+        "Guduchi",
+        "Amla",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Cooling foods",
+        "Avoid overly spicy/oily meals",
+        "Hydration",
+        "Fresh fruits and lighter meals"
+      ],
+      "lifestyle_support": [
+        "Heat management",
+        "Moderate exercise",
+        "Relaxation",
+        "Avoid overexertion"
+      ],
+      "note": "Cooling and soothing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize cooling foods, hydration, and avoid excess heat. Prediction confidence is low, so treat this as a mild suggestion."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 70.0,
+      "spo2": 97.0,
+      "temperature_c": 36.888888888888886
+    },
+    "prediction": {
+      "dosha_label": "pitta (3.0)",
+      "dosha_predicted": "pitta",
+      "confidence_level": "medium",
+      "recommendation_strength": "moderate"
+    },
+    "recommendation": {
+      "herbs": [
+        "Guduchi",
+        "Amla",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Cooling foods",
+        "Avoid overly spicy/oily meals",
+        "Hydration",
+        "Fresh fruits and lighter meals"
+      ],
+      "lifestyle_support": [
+        "Heat management",
+        "Moderate exercise",
+        "Relaxation",
+        "Avoid overexertion"
+      ],
+      "note": "Cooling and soothing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize cooling foods, hydration, and avoid excess heat. Prediction confidence is moderate."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 88.0,
+      "spo2": 97.0,
+      "temperature_c": 37.166666666666664
+    },
+    "prediction": {
+      "dosha_label": "pitta (3.0)",
+      "dosha_predicted": "pitta",
+      "confidence_level": "medium",
+      "recommendation_strength": "moderate"
+    },
+    "recommendation": {
+      "herbs": [
+        "Guduchi",
+        "Amla",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Cooling foods",
+        "Avoid overly spicy/oily meals",
+        "Hydration",
+        "Fresh fruits and lighter meals"
+      ],
+      "lifestyle_support": [
+        "Heat management",
+        "Moderate exercise",
+        "Relaxation",
+        "Avoid overexertion"
+      ],
+      "note": "Cooling and soothing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize cooling foods, hydration, and avoid excess heat. Prediction confidence is moderate."
+    }
+  },
+  {
+    "subject_id": 10000032,
+    "vitals": {
+      "heart_rate": 105.0,
+      "spo2": 96.0,
+      "temperature_c": 37.44444444444444
+    },
+    "prediction": {
+      "dosha_label": "pitta (3.0)",
+      "dosha_predicted": "pitta",
+      "confidence_level": "medium",
+      "recommendation_strength": "moderate"
+    },
+    "recommendation": {
+      "herbs": [
+        "Guduchi",
+        "Amla",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Cooling foods",
+        "Avoid overly spicy/oily meals",
+        "Hydration",
+        "Fresh fruits and lighter meals"
+      ],
+      "lifestyle_support": [
+        "Heat management",
+        "Moderate exercise",
+        "Relaxation",
+        "Avoid overexertion"
+      ],
+      "note": "Cooling and soothing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize cooling foods, hydration, and avoid excess heat. Prediction confidence is moderate."
+    }
+  },
+  {
+    "subject_id": 10001217,
+    "vitals": {
+      "heart_rate": 66.0,
+      "spo2": 97.0,
+      "temperature_c": 36.888888888888886
+    },
+    "prediction": {
+      "dosha_label": "pitta (3.0)",
+      "dosha_predicted": "pitta",
+      "confidence_level": "medium",
+      "recommendation_strength": "moderate"
+    },
+    "recommendation": {
+      "herbs": [
+        "Guduchi",
+        "Amla",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Cooling foods",
+        "Avoid overly spicy/oily meals",
+        "Hydration",
+        "Fresh fruits and lighter meals"
+      ],
+      "lifestyle_support": [
+        "Heat management",
+        "Moderate exercise",
+        "Relaxation",
+        "Avoid overexertion"
+      ],
+      "note": "Cooling and soothing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize cooling foods, hydration, and avoid excess heat. Prediction confidence is moderate."
+    }
+  },
+  {
+    "subject_id": 10001217,
+    "vitals": {
+      "heart_rate": 66.0,
+      "spo2": 100.0,
+      "temperature_c": 36.72222222222222
+    },
+    "prediction": {
+      "dosha_label": "kapha (5.0)",
+      "dosha_predicted": "kapha",
+      "confidence_level": "high",
+      "recommendation_strength": "strong"
+    },
+    "recommendation": {
+      "herbs": [
+        "Ginger",
+        "Triphala",
+        "Cinnamon"
+      ],
+      "diet_support": [
+        "Light warm meals",
+        "Reduce heavy/oily foods",
+        "Avoid overeating",
+        "Prefer stimulating spices in moderation"
+      ],
+      "lifestyle_support": [
+        "Daily exercise",
+        "Active routine",
+        "Avoid oversleeping",
+        "Warm water intake"
+      ],
+      "note": "Stimulating and lightening support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize light diet, movement, and avoid heavy meals. Prediction confidence is high within this prototype rule base."
+    }
+  },
+  {
+    "subject_id": 10001217,
+    "vitals": {
+      "heart_rate": 68.0,
+      "spo2": 100.0,
+      "temperature_c": 36.666666666666664
+    },
+    "prediction": {
+      "dosha_label": "kapha (5.0)",
+      "dosha_predicted": "kapha",
+      "confidence_level": "high",
+      "recommendation_strength": "strong"
+    },
+    "recommendation": {
+      "herbs": [
+        "Ginger",
+        "Triphala",
+        "Cinnamon"
+      ],
+      "diet_support": [
+        "Light warm meals",
+        "Reduce heavy/oily foods",
+        "Avoid overeating",
+        "Prefer stimulating spices in moderation"
+      ],
+      "lifestyle_support": [
+        "Daily exercise",
+        "Active routine",
+        "Avoid oversleeping",
+        "Warm water intake"
+      ],
+      "note": "Stimulating and lightening support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize light diet, movement, and avoid heavy meals. Prediction confidence is high within this prototype rule base."
+    }
+  },
+  {
+    "subject_id": 10001217,
+    "vitals": {
+      "heart_rate": 70.0,
+      "spo2": 99.0,
+      "temperature_c": 36.666666666666664
+    },
+    "prediction": {
+      "dosha_label": "kapha (5.0)",
+      "dosha_predicted": "kapha",
+      "confidence_level": "high",
+      "recommendation_strength": "strong"
+    },
+    "recommendation": {
+      "herbs": [
+        "Ginger",
+        "Triphala",
+        "Cinnamon"
+      ],
+      "diet_support": [
+        "Light warm meals",
+        "Reduce heavy/oily foods",
+        "Avoid overeating",
+        "Prefer stimulating spices in moderation"
+      ],
+      "lifestyle_support": [
+        "Daily exercise",
+        "Active routine",
+        "Avoid oversleeping",
+        "Warm water intake"
+      ],
+      "note": "Stimulating and lightening support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize light diet, movement, and avoid heavy meals. Prediction confidence is high within this prototype rule base."
+    }
+  },
+  {
+    "subject_id": 10001217,
+    "vitals": {
+      "heart_rate": 75.0,
+      "spo2": 98.0,
+      "temperature_c": 36.666666666666664
+    },
+    "prediction": {
+      "dosha_label": "kapha (3.0)",
+      "dosha_predicted": "kapha",
+      "confidence_level": "medium",
+      "recommendation_strength": "moderate"
+    },
+    "recommendation": {
+      "herbs": [
+        "Ginger",
+        "Triphala",
+        "Cinnamon"
+      ],
+      "diet_support": [
+        "Light warm meals",
+        "Reduce heavy/oily foods",
+        "Avoid overeating",
+        "Prefer stimulating spices in moderation"
+      ],
+      "lifestyle_support": [
+        "Daily exercise",
+        "Active routine",
+        "Avoid oversleeping",
+        "Warm water intake"
+      ],
+      "note": "Stimulating and lightening support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize light diet, movement, and avoid heavy meals. Prediction confidence is moderate."
+    }
+  },
+  {
+    "subject_id": 10001217,
+    "vitals": {
+      "heart_rate": 81.0,
+      "spo2": 97.0,
+      "temperature_c": 37.22222222222222
+    },
+    "prediction": {
+      "dosha_label": "pitta (3.0)",
+      "dosha_predicted": "pitta",
+      "confidence_level": "medium",
+      "recommendation_strength": "moderate"
+    },
+    "recommendation": {
+      "herbs": [
+        "Guduchi",
+        "Amla",
+        "Shatavari"
+      ],
+      "diet_support": [
+        "Cooling foods",
+        "Avoid overly spicy/oily meals",
+        "Hydration",
+        "Fresh fruits and lighter meals"
+      ],
+      "lifestyle_support": [
+        "Heat management",
+        "Moderate exercise",
+        "Relaxation",
+        "Avoid overexertion"
+      ],
+      "note": "Cooling and soothing support",
+      "caution": "Prototype Ayurvedic wellness suggestion only; not a medical prescription. Prioritize cooling foods, hydration, and avoid excess heat. Prediction confidence is moderate."
+    }
+  }
+]
