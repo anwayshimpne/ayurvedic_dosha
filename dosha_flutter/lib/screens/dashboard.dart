@@ -381,8 +381,33 @@ class _DashboardScreenState extends State<DashboardScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(children: [
-            Container(width: 8, height: 8,
-                decoration: const BoxDecoration(color: _red, shape: BoxShape.circle)),
+            AnimatedBuilder(
+              animation: _wave,
+              builder: (_, __) {
+                final pulse = (math.sin(_wave.value * 2 * math.pi) + 1) / 2;
+                return Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: 8 + pulse * 10,
+                      height: 8 + pulse * 10,
+                      decoration: BoxDecoration(
+                        color: _red.withOpacity(0.25 * (1 - pulse)),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    Container(
+                      width: 8,
+                      height: 8,
+                      decoration: const BoxDecoration(
+                        color: _red,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
             const SizedBox(width: 8),
             const Text('Live Pulse Wave',
                 style: TextStyle(color: _red, fontWeight: FontWeight.bold, fontSize: 13)),
