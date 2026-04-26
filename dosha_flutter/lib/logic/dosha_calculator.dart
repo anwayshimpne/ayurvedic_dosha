@@ -95,25 +95,26 @@ class DoshaCalculator {
   }
 
   static String getCautionText(String dosha, String confidenceLevel) {
-    String base = "Prototype Ayurvedic wellness suggestion only; not a medical prescription.";
-    String extra = "";
+    const _cautions = {
+      'vata': {
+        'high':   'Your readings strongly suggest elevated Vata. Prioritise warmth, grounding routines, and nourishing meals — and consult an Ayurvedic practitioner for personalised guidance.',
+        'medium': 'Your readings moderately suggest elevated Vata. Focus on regular sleep, warm foods, and reducing stress where possible.',
+        'low':    'A mild Vata tendency is indicated, though confidence is low. Treat this as a gentle reminder to stay warm and maintain steady daily habits.',
+      },
+      'pitta': {
+        'high':   'Your readings strongly suggest elevated Pitta. Prioritise cooling foods, adequate hydration, and avoiding excess heat or overexertion — consult a practitioner if symptoms persist.',
+        'medium': 'Your readings moderately suggest elevated Pitta. Favour lighter, cooling meals and make time for relaxation throughout the day.',
+        'low':    'A mild Pitta tendency is indicated, though confidence is low. Staying hydrated and avoiding unnecessarily spicy meals is a reasonable precaution.',
+      },
+      'kapha': {
+        'high':   'Your readings strongly suggest elevated Kapha. Prioritise light warm meals, daily movement, and an energising routine — consult a practitioner for a tailored plan.',
+        'medium': 'Your readings moderately suggest elevated Kapha. Incorporate regular activity and prefer lighter, spiced foods to keep energy levels up.',
+        'low':    'A mild Kapha tendency is indicated, though confidence is low. Staying active and avoiding heavy or oily foods is a sensible precaution.',
+      },
+    };
 
-    if (dosha == "vata") {
-      extra = " Prioritize rest, warmth, and regular meals.";
-    } else if (dosha == "pitta") {
-      extra = " Prioritize cooling foods, hydration, and avoid excess heat.";
-    } else if (dosha == "kapha") {
-      extra = " Prioritize light diet, movement, and avoid heavy meals.";
-    }
-
-    if (confidenceLevel == "low") {
-      extra += " Prediction confidence is low, so treat this as a mild suggestion.";
-    } else if (confidenceLevel == "medium") {
-      extra += " Prediction confidence is moderate.";
-    } else if (confidenceLevel == "high") {
-      extra += " Prediction confidence is high within this prototype rule base.";
-    }
-
-    return base + extra;
+    final text = _cautions[dosha]?[confidenceLevel];
+    return text ??
+        'Prototype Ayurvedic wellness suggestion only — not a medical prescription. Please consult a qualified practitioner for personalised advice.';
   }
 }
