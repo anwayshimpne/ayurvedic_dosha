@@ -203,30 +203,47 @@ class _DashboardScreenState extends State<DashboardScreen>
   }
 
   // ── AppBar ────────────────────────────────────────────────────────────────
-  AppBar _appBar(BuildContext ctx) => AppBar(
-    backgroundColor: _bg,
-    title: Row(
+  PreferredSizeWidget _appBar(BuildContext ctx) => PreferredSize(
+    preferredSize: const Size.fromHeight(kToolbarHeight + 2),
+    child: Column(
       children: [
-        Container(
-          padding: const EdgeInsets.all(6),
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(colors: [_teal, _purple]),
-            borderRadius: BorderRadius.circular(10),
+        AppBar(
+          backgroundColor: _bg,
+          title: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(colors: [_teal, _purple]),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Icon(Icons.spa_rounded, color: Colors.white, size: 20),
+              ),
+              const SizedBox(width: 10),
+              const Text('Sukshma Buddhi',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white)),
+            ],
           ),
-          child: const Icon(Icons.spa_rounded, color: Colors.white, size: 20),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.settings_rounded, color: _muted),
+              onPressed: () => Navigator.push(ctx,
+                  MaterialPageRoute(builder: (_) => const SettingsScreen())),
+            ),
+          ],
         ),
-        const SizedBox(width: 10),
-        const Text('Sukshma Buddhi',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white)),
+        Container(
+          height: 2,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [_teal, _purple, _orange],
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+            ),
+          ),
+        ),
       ],
     ),
-    actions: [
-      IconButton(
-        icon: const Icon(Icons.settings_rounded, color: _muted),
-        onPressed: () => Navigator.push(ctx,
-            MaterialPageRoute(builder: (_) => const SettingsScreen())),
-      ),
-    ],
   );
 
   // ── Banner ────────────────────────────────────────────────────────────────
