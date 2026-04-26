@@ -635,6 +635,20 @@ class _DashboardScreenState extends State<DashboardScreen>
                   fontSize: 36, fontWeight: FontWeight.bold,
                   letterSpacing: 2)),
           const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _predTag(
+                KnowledgeBase.herbKnowledge[pred.dosha]?['element'] ?? '',
+                Icons.bubble_chart_rounded, c,
+              ),
+              const SizedBox(width: 8),
+              _predTag(
+                KnowledgeBase.herbKnowledge[pred.dosha]?['quality'] ?? '',
+                Icons.auto_awesome_rounded, c,
+              ),
+            ],
+          ),
           Text(
             KnowledgeBase.herbKnowledge[pred.dosha]?['description'] ?? '',
             textAlign: TextAlign.center,
@@ -675,6 +689,28 @@ class _DashboardScreenState extends State<DashboardScreen>
           style: const TextStyle(color: Colors.white,
               fontWeight: FontWeight.bold, fontSize: 14)),
     ],
+  );
+
+  Widget _predTag(String label, IconData icon, Color color) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+    decoration: BoxDecoration(
+      color: Colors.white.withOpacity(0.12),
+      borderRadius: BorderRadius.circular(20),
+      border: Border.all(color: Colors.white.withOpacity(0.2)),
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, size: 11, color: Colors.white70),
+        const SizedBox(width: 5),
+        Text(label,
+            style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 10.5,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 0.3)),
+      ],
+    ),
   );
 
   // ── Recommendations ───────────────────────────────────────────────────────
