@@ -458,18 +458,21 @@ class _DashboardScreenState extends State<DashboardScreen>
   Widget _vitalsRow(VitalsData v) => Row(
     children: [
       Expanded(child: _vitalCard('Heart Rate', v.hr, 'bpm', _red,
-          Icons.favorite_rounded, DoshaCalculator.isAbnormal('hr', v.hr))),
+          Icons.favorite_rounded, DoshaCalculator.isAbnormal('hr', v.hr),
+          insight: DoshaCalculator.getVitalInsight('hr', v.hr))),
       const SizedBox(width: 10),
       Expanded(child: _vitalCard('SpO₂', v.spo2, '%', _blue,
-          Icons.water_drop_rounded, DoshaCalculator.isAbnormal('spo2', v.spo2))),
+          Icons.water_drop_rounded, DoshaCalculator.isAbnormal('spo2', v.spo2),
+          insight: DoshaCalculator.getVitalInsight('spo2', v.spo2))),
       const SizedBox(width: 10),
       Expanded(child: _vitalCard('Temp', v.temp, '°C', _orange,
-          Icons.thermostat_rounded, DoshaCalculator.isAbnormal('temp', v.temp), dec: 1)),
+          Icons.thermostat_rounded, DoshaCalculator.isAbnormal('temp', v.temp),
+          dec: 1, insight: DoshaCalculator.getVitalInsight('temp', v.temp))),
     ],
   );
 
   Widget _vitalCard(String title, double val, String unit, Color color,
-      IconData icon, bool alert, {int dec = 0}) =>
+      IconData icon, bool alert, {int dec = 0, VitalInsight? insight}) =>
       Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         decoration: BoxDecoration(
@@ -505,9 +508,40 @@ class _DashboardScreenState extends State<DashboardScreen>
               const SizedBox(height: 4),
               const Icon(Icons.warning_amber_rounded, color: _red, size: 14),
             ],
+            if (insight != null) ...[
+              const SizedBox(height: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                decoration: BoxDecoration(
+                  color: _doshaInsightColor(insight.dosha).withOpacity(0.15),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                      color: _doshaInsightColor(insight.dosha).withOpacity(0.35)),
+                ),
+                child: Text(
+                  insight.label,
+                  style: TextStyle(
+                      color: _doshaInsightColor(insight.dosha),
+                      fontSize: 9,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.2),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
           ],
         ),
       );
+
+  /// Picks a display colour for the insight chip based on the dosha it signals.
+  static Color _doshaInsightColor(String? dosha) {
+    switch (dosha) {
+      case 'vata':  return _purple;
+      case 'pitta': return _orange;
+      case 'kapha': return _teal;
+      default:      return _muted;
+    }
+  }
 
   // ── Dosha analysis ────────────────────────────────────────────────────────
   Widget _doshaCard(Map<String, double> pct, String dom) => _glass(

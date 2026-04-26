@@ -132,4 +132,42 @@ class DoshaCalculator {
     return text ??
         'Prototype Ayurvedic wellness suggestion only — not a medical prescription. Please consult a qualified practitioner for personalised advice.';
   }
+
+  // ── Vital Insight ──────────────────────────────────────────────────────────
+  /// Returns a short, human-readable string explaining which dosha(s) a given
+  /// vital reading influences — mirrors the exact scoring rules in [predict].
+  static VitalInsight getVitalInsight(String vital, double value) {
+    switch (vital) {
+      case 'hr':
+        if (value > 100) return VitalInsight('Vata ↑↑  Pitta ↑', 'vata');
+        if (value > 90)  return VitalInsight('Vata ↑  Pitta ↑', 'vata');
+        if (value < 60)  return VitalInsight('Kapha ↑↑', 'kapha');
+        if (value < 75)  return VitalInsight('Kapha ↑', 'kapha');
+        return VitalInsight('Balanced signal', null);
+
+      case 'spo2':
+        if (value >= 98) return VitalInsight('Kapha ↑↑', 'kapha');
+        if (value >= 97) return VitalInsight('Pitta ↑', 'pitta');
+        if (value < 92)  return VitalInsight('Vata ↑↑', 'vata');
+        if (value < 96)  return VitalInsight('Vata ↑', 'vata');
+        return VitalInsight('Balanced signal', null);
+
+      case 'temp':
+        if (value > 37.5) return VitalInsight('Pitta ↑↑', 'pitta');
+        if (value > 36.8) return VitalInsight('Pitta ↑', 'pitta');
+        if (value < 35.5) return VitalInsight('Vata ↑↑', 'vata');
+        if (value < 36.2) return VitalInsight('Vata ↑', 'vata');
+        return VitalInsight('Kapha ↑', 'kapha');
+
+      default:
+        return VitalInsight('—', null);
+    }
+  }
+}
+
+/// Carries the insight label and the primary dosha it signals (null = balanced).
+class VitalInsight {
+  final String label;
+  final String? dosha; // 'vata' | 'pitta' | 'kapha' | null
+  const VitalInsight(this.label, this.dosha);
 }
