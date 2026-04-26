@@ -220,8 +220,16 @@ class _DashboardScreenState extends State<DashboardScreen>
                 child: const Icon(Icons.spa_rounded, color: Colors.white, size: 20),
               ),
               const SizedBox(width: 10),
-              const Text('Sukshma Buddhi',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Sukshma Buddhi',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Colors.white)),
+                  Text('सूक्ष्म बुद्धि · Know Your Dosha',
+                      style: TextStyle(fontSize: 10, color: _muted.withOpacity(0.75), height: 1.2)),
+                ],
+              ),
             ],
           ),
           actions: [
