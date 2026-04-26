@@ -634,6 +634,16 @@ class _DashboardScreenState extends State<DashboardScreen>
               style: const TextStyle(color: Colors.white,
                   fontSize: 36, fontWeight: FontWeight.bold,
                   letterSpacing: 2)),
+          const SizedBox(height: 10),
+          Text(
+            KnowledgeBase.herbKnowledge[pred.dosha]?['description'] ?? '',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 11.5,
+                fontStyle: FontStyle.italic,
+                height: 1.6),
+          ),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
