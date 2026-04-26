@@ -467,10 +467,17 @@ class _DashboardScreenState extends State<DashboardScreen>
                 style: const TextStyle(color: _muted, fontSize: 11),
                 textAlign: TextAlign.center),
             const SizedBox(height: 4),
-            Text('${val.toStringAsFixed(dec)} $unit',
-                style: TextStyle(color: color, fontSize: 16,
-                    fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center),
+            TweenAnimationBuilder<double>(
+              tween: Tween(begin: 0, end: val),
+              duration: const Duration(milliseconds: 900),
+              curve: Curves.easeOut,
+              builder: (_, animated, __) => Text(
+                '${animated.toStringAsFixed(dec)} $unit',
+                style: TextStyle(
+                    color: color, fontSize: 16, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ),
             if (alert) ...[
               const SizedBox(height: 4),
               const Icon(Icons.warning_amber_rounded, color: _red, size: 14),
