@@ -255,27 +255,42 @@ class _DashboardScreenState extends State<DashboardScreen>
   );
 
   // ── Banner ────────────────────────────────────────────────────────────────
-  Widget _banner() => _glass(
-    borderColor: _teal.withOpacity(0.25),
-    child: const Row(
-      children: [
-        Icon(Icons.monitor_heart_rounded, color: _teal, size: 28),
-        SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Ayurvedic Health Monitor',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white)),
-              SizedBox(height: 2),
-              Text('Real-time dosha prediction via biosensor data',
-                  style: TextStyle(fontSize: 12, color: _muted)),
-            ],
+  Widget _banner() {
+    final card = _glass(
+      borderColor: _teal.withOpacity(0.25),
+      child: const Row(
+        children: [
+          Icon(Icons.monitor_heart_rounded, color: _teal, size: 28),
+          SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Ayurvedic Health Monitor',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white)),
+                SizedBox(height: 2),
+                Text('Real-time dosha prediction via biosensor data',
+                    style: TextStyle(fontSize: 12, color: _muted)),
+              ],
+            ),
           ),
+        ],
+      ),
+    );
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0.0, end: 1.0),
+      duration: const Duration(milliseconds: 700),
+      curve: Curves.easeOut,
+      child: card,
+      builder: (_, t, child) => Opacity(
+        opacity: t,
+        child: Transform.translate(
+          offset: Offset(0, 20 * (1 - t)),
+          child: child,
         ),
-      ],
-    ),
-  );
+      ),
+    );
+  }
 
   // ── Toggles ───────────────────────────────────────────────────────────────
   Widget _toggleCard(Esp8266Service svc) => _glass(
