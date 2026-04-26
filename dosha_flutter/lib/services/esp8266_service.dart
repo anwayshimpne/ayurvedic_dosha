@@ -32,6 +32,13 @@ class VitalsData {
   }
 }
 
+/// A snapshot saved after each completed measurement.
+class SessionRecord {
+  final VitalsData vitals;
+  final DateTime timestamp;
+  SessionRecord({required this.vitals, required this.timestamp});
+}
+
 class Esp8266Service extends ChangeNotifier {
   String _ipAddress = "192.168.1.100";
   Timer? _timer;
@@ -53,6 +60,9 @@ class Esp8266Service extends ChangeNotifier {
   // Stable averaged result shown on UI (null = not ready yet)
   VitalsData? _stableVitals;
 
+  // Session history — up to 10 most recent completed readings
+  final List<SessionRecord> _sessionHistory = [];
+
   // Simulation
   bool   _isSimulationMode = false;
   double _simHr   = 75.0;
@@ -70,6 +80,7 @@ class Esp8266Service extends ChangeNotifier {
   int         get secondsElapsed  => _bufferCount * 2;
   int         get secondsLeft     => (_bufferTarget - _bufferCount) * 2;
   VitalsData? get latestVitals    => _stableVitals;
+  List<SessionRecord> get sessionHistory => List.unmodifiable(_sessionHistory);
 
   bool   get isSimulationMode => _isSimulationMode;
   double get simHr   => _simHr;
@@ -79,6 +90,18 @@ class Esp8266Service extends ChangeNotifier {
   // ── IP ────────────────────────────────────────────────────────────────────
   void setIpAddress(String ip) {
     _ipAddress = ip;
+    notifyListeners();
+  }
+
+  // ── History ───────────────────────────────────────────────────────────────
+  void addToHistory(VitalsData v) {
+    _sessionHistory.add(SessionRecord(vitals: v, timestamp: DateTime.now()));
+    if (_sessionHistory.length > 10) _sessionHistory.removeAt(0);
+    notifyListeners();
+  }
+
+  void clearHistory() {
+    _sessionHistory.clear();
     notifyListeners();
   }
 
@@ -197,6 +220,7 @@ class Esp8266Service extends ChangeNotifier {
 
         _stableVitals = VitalsData(
             hr: avgHr, spo2: avgSpo2, temp: avgTemp, ir: raw.ir);
+        addToHistory(_stableVitals!);
         _isMeasuring  = false;
         _resetBuffer();
       }

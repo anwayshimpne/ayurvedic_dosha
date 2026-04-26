@@ -177,10 +177,27 @@ class _DashboardScreenState extends State<DashboardScreen>
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                     ),
                   ),
+                  if (svc.isSimulationMode && v != null) ...[
+                    const SizedBox(height: 10),
+                    OutlinedButton.icon(
+                      onPressed: () => svc.addToHistory(v),
+                      icon: const Icon(Icons.bookmark_add_rounded, color: _teal, size: 18),
+                      label: const Text('Save Reading', style: TextStyle(color: _teal, fontWeight: FontWeight.bold)),
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: _teal),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                      ),
+                    ),
+                  ],
                 ] else if (svc.isPolling && !svc.isMeasuring && svc.isFingerPresent) ...[
                   _waitCard(),
                 ] else if (!svc.isPolling) ...[
                   _idleCard(),
+                ],
+                if (svc.sessionHistory.isNotEmpty) ...[
+                  const SizedBox(height: 20),
+                  _historySection(svc.sessionHistory, svc),
                 ],
               ],
             ),
@@ -795,6 +812,144 @@ class _DashboardScreenState extends State<DashboardScreen>
           ],
         ),
       );
+
+  // ── Session History ───────────────────────────────────────────────────────
+  Widget _historySection(List<SessionRecord> history, Esp8266Service svc) {
+    // ── Compute trend ──────────────────────────────────────────────────────
+    final doshaCount = <String, int>{'vata': 0, 'pitta': 0, 'kapha': 0};
+    for (final r in history) {
+      final pred = DoshaCalculator.predict(r.vitals.hr, r.vitals.spo2, r.vitals.temp);
+      doshaCount[pred.dosha] = (doshaCount[pred.dosha] ?? 0) + 1;
+    }
+    final dominant = doshaCount.entries.reduce((a, b) => a.value >= b.value ? a : b);
+    final trendColor = _doshaColor(dominant.key);
+    final trendEmoji = _doshaEmoji(dominant.key);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Header row
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Row(children: [
+              Icon(Icons.history_rounded, color: _teal, size: 18),
+              SizedBox(width: 8),
+              Text('Session History',
+                  style: TextStyle(fontWeight: FontWeight.bold,
+                      fontSize: 18, color: Colors.white)),
+            ]),
+            TextButton.icon(
+              onPressed: svc.clearHistory,
+              icon: const Icon(Icons.delete_outline_rounded, color: _muted, size: 16),
+              label: const Text('Clear', style: TextStyle(color: _muted, fontSize: 12)),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+
+        // ── Trend banner ────────────────────────────────────────────────────
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          decoration: BoxDecoration(
+            color: trendColor.withOpacity(0.12),
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: trendColor.withOpacity(0.35)),
+          ),
+          child: Row(
+            children: [
+              Text(trendEmoji, style: const TextStyle(fontSize: 18)),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  '${dominant.key[0].toUpperCase()}${dominant.key.substring(1)} dominant '
+                  'in ${dominant.value} of ${history.length} '
+                  '${history.length == 1 ? 'reading' : 'readings'}',
+                  style: TextStyle(
+                      color: trendColor, fontWeight: FontWeight.w600, fontSize: 13),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+
+        // ── Scrollable session cards ─────────────────────────────────────────
+        SizedBox(
+          height: 130,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: history.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 10),
+            itemBuilder: (_, i) {
+              final rec = history[history.length - 1 - i]; // newest first
+              final pred = DoshaCalculator.predict(
+                  rec.vitals.hr, rec.vitals.spo2, rec.vitals.temp);
+              final c = _doshaColor(pred.dosha);
+              final now = DateTime.now();
+              final diff = now.difference(rec.timestamp);
+              final ago = diff.inMinutes < 1
+                  ? 'Just now'
+                  : diff.inHours < 1
+                      ? '${diff.inMinutes}m ago'
+                      : '${diff.inHours}h ago';
+              return Container(
+                width: 120,
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: _cardHi,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: c.withOpacity(0.35)),
+                  boxShadow: [
+                    BoxShadow(color: c.withOpacity(0.08),
+                        blurRadius: 8, offset: const Offset(0, 3))
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(children: [
+                      Text(_doshaEmoji(pred.dosha),
+                          style: const TextStyle(fontSize: 16)),
+                      const Spacer(),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: c.withOpacity(0.15),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Text(
+                          pred.dosha.toUpperCase().substring(0, 3),
+                          style: TextStyle(
+                              color: c, fontSize: 9,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ]),
+                    const SizedBox(height: 6),
+                    Text('♥ ${rec.vitals.hr.toStringAsFixed(0)} bpm',
+                        style: const TextStyle(color: _red,
+                            fontSize: 10, fontWeight: FontWeight.w600)),
+                    Text('💧 ${rec.vitals.spo2.toStringAsFixed(0)}%',
+                        style: const TextStyle(color: _blue,
+                            fontSize: 10, fontWeight: FontWeight.w600)),
+                    Text('🌡 ${rec.vitals.temp.toStringAsFixed(1)}°C',
+                        style: const TextStyle(color: _orange,
+                            fontSize: 10, fontWeight: FontWeight.w600)),
+                    const Spacer(),
+                    Text(ago,
+                        style: const TextStyle(color: _muted,
+                            fontSize: 9)),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
 
   // ── Connection / wait / idle ──────────────────────────────────────────────
   Widget _connectionCard(Esp8266Service svc) => _glass(
