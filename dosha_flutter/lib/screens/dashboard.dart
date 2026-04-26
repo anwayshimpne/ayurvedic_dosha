@@ -458,13 +458,13 @@ class _DashboardScreenState extends State<DashboardScreen>
   Widget _vitalsRow(VitalsData v) => Row(
     children: [
       Expanded(child: _vitalCard('Heart Rate', v.hr, 'bpm', _red,
-          Icons.favorite_rounded, v.hr < 50 || v.hr > 120)),
+          Icons.favorite_rounded, DoshaCalculator.isAbnormal('hr', v.hr))),
       const SizedBox(width: 10),
       Expanded(child: _vitalCard('SpO₂', v.spo2, '%', _blue,
-          Icons.water_drop_rounded, v.spo2 < 92)),
+          Icons.water_drop_rounded, DoshaCalculator.isAbnormal('spo2', v.spo2))),
       const SizedBox(width: 10),
       Expanded(child: _vitalCard('Temp', v.temp, '°C', _orange,
-          Icons.thermostat_rounded, v.temp > 38.0, dec: 1)),
+          Icons.thermostat_rounded, DoshaCalculator.isAbnormal('temp', v.temp), dec: 1)),
     ],
   );
 

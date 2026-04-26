@@ -15,6 +15,21 @@ class DoshaPrediction {
 }
 
 class DoshaCalculator {
+  // ── Normal vital ranges ────────────────────────────────────────────────────
+  // Single source of truth — update here to affect both alerts and future logic.
+  static const Map<String, Map<String, double>> normalRanges = {
+    'hr':   {'min': 50.0, 'max': 120.0},
+    'spo2': {'min': 92.0, 'max': 100.0},
+    'temp': {'min': 35.0, 'max': 38.0},
+  };
+
+  /// Returns true if [value] falls outside the normal range for [vital].
+  static bool isAbnormal(String vital, double value) {
+    final range = normalRanges[vital];
+    if (range == null) return false;
+    return value < range['min']! || value > range['max']!;
+  }
+
   static DoshaPrediction predict(double hr, double spo2, double tempC) {
     Map<String, double> scores = {"vata": 0.0, "pitta": 0.0, "kapha": 0.0};
 
