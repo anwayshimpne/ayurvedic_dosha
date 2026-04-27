@@ -4,6 +4,20 @@ import json
 import time
 import random
 from datetime import datetime
+import joblib
+import warnings
+
+warnings.filterwarnings("ignore", category=UserWarning)
+
+@st.cache_resource
+def load_model():
+    try:
+        return joblib.load("dosha_rf_model.pkl")
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
+        return None
+
+rf_model = load_model()
 
 st.set_page_config(
     page_title="Ayurvedic Dosha Predictor",
@@ -146,34 +160,31 @@ herb_knowledge = {
 # Helper Functions
 # -----------------------------
 def assign_dosha_refined_from_values(heart_rate, spo2, temperature_c):
-    scores = {"vata": 0.0, "pitta": 0.0, "kapha": 0.0}
-
-    # Vata
-    if heart_rate > 90:
-        scores["vata"] += 2
-    if temperature_c < 36.2:
-        scores["vata"] += 2
-    if spo2 < 96:
-        scores["vata"] += 1
-
-    # Pitta
-    if heart_rate > 90:
-        scores["pitta"] += 1
-    if temperature_c > 36.8:
-        scores["pitta"] += 2
-    if spo2 >= 97:
-        scores["pitta"] += 1
-
-    # Kapha
-    if heart_rate < 75:
-        scores["kapha"] += 2
-    if 36.2 <= temperature_c <= 36.8:
-        scores["kapha"] += 1
-    if spo2 >= 98:
-        scores["kapha"] += 2
-
-    dominant = max(scores, key=scores.get)
+    if rf_model is None:
+        # Fallback to zeros if model fails to load
+        return "vata", 0.0, {"vata": 0.0, "pitta": 0.0, "kapha": 0.0}
+        
+    input_df = pd.DataFrame([[heart_rate, spo2, temperature_c]], columns=['heart_rate', 'spo2', 'temperature_c'])
+    
+    # Predict
+    dominant = rf_model.predict(input_df)[0]
+    
+    # Get probabilities and scale to 0-5 for confidence bucket compatibility
+    probabilities = rf_model.predict_proba(input_df)[0]
+    prob_dict = {
+        class_name: float(prob) 
+        for class_name, prob in zip(rf_model.classes_, probabilities)
+    }
+    
+    scores = {k: v * 5.0 for k, v in prob_dict.items()}
+    
+    # Check if we need to fill in missing doshas with 0 (just in case model classes are missing one)
+    for dosha in ["vata", "pitta", "kapha"]:
+        if dosha not in scores:
+            scores[dosha] = 0.0
+            
     confidence_score = max(scores.values())
+    
     return dominant, confidence_score, scores
 
 def confidence_bucket(score):

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 class DoshaPrediction {
   final String dosha;
   final String label;
@@ -15,7 +18,50 @@ class DoshaPrediction {
 }
 
 class DoshaCalculator {
-  static DoshaPrediction predict(double hr, double spo2, double tempC) {
+  static Future<DoshaPrediction> predict(double hr, double spo2, double tempC) async {
+    try {
+      final response = await http.post(
+        Uri.parse('http://127.0.0.1:5000/predict'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'heart_rate': hr,
+          'spo2': spo2,
+          'temperature_c': tempC,
+        }),
+      ).timeout(const Duration(seconds: 3));
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final String dominant = data['dosha'];
+        final double score = data['confidence_score'] ?? 0.0;
+        final Map<String, dynamic> rawScores = data['scores'] ?? {};
+        
+        Map<String, double> scores = {
+          "vata": (rawScores["vata"] ?? 0.0).toDouble(),
+          "pitta": (rawScores["pitta"] ?? 0.0).toDouble(),
+          "kapha": (rawScores["kapha"] ?? 0.0).toDouble(),
+        };
+
+        String confidence = _confidenceBucket(score);
+        String strength = _herbStrength(confidence);
+
+        return DoshaPrediction(
+          dosha: dominant,
+          label: "$dominant (${score.toStringAsFixed(1)})",
+          confidence: confidence,
+          recommendationStrength: strength,
+          scores: scores,
+        );
+      }
+    } catch (e) {
+      print("API Error: $e");
+    }
+
+    // Fallback to rule-based logic if API fails
+    return _fallbackPredict(hr, spo2, tempC);
+  }
+
+  static DoshaPrediction _fallbackPredict(double hr, double spo2, double tempC) {
     Map<String, double> scores = {"vata": 0.0, "pitta": 0.0, "kapha": 0.0};
 
     // Vata

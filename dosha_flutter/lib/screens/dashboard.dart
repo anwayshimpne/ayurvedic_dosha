@@ -69,9 +69,7 @@ class _DashboardScreenState extends State<DashboardScreen>
           Map<String, dynamic>? kb;
 
           if (v != null) {
-            pred = DoshaCalculator.predict(v.hr, v.spo2, v.temp);
             pct  = DoshaCalculator.calculateDoshaPercentages(v.hr, v.spo2, v.temp);
-            kb   = KnowledgeBase.herbKnowledge[pred.dosha];
           }
 
           return SingleChildScrollView(
@@ -157,15 +155,38 @@ class _DashboardScreenState extends State<DashboardScreen>
                   const SizedBox(height: 14),
                   _vitalsRow(v),
                   const SizedBox(height: 14),
-                  if (pct != null && pred != null) ...[
-                    _doshaCard(pct, pred.dosha),
-                    const SizedBox(height: 14),
-                    _predCard(pred),
-                  ],
-                  if (pred != null && kb != null) ...[
-                    const SizedBox(height: 14),
-                    _recoSection(pred, kb),
-                  ],
+                  FutureBuilder<DoshaPrediction>(
+                    future: DoshaCalculator.predict(v.hr, v.spo2, v.temp),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Center(child: CircularProgressIndicator(color: _teal)),
+                        );
+                      }
+                      if (snapshot.hasError || !snapshot.hasData) {
+                        return const Text('Error predicting Dosha.', style: TextStyle(color: _red));
+                      }
+                      
+                      final pred = snapshot.data!;
+                      final kb = KnowledgeBase.herbKnowledge[pred.dosha];
+                      
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          if (pct != null) ...[
+                            _doshaCard(pct, pred.dosha),
+                            const SizedBox(height: 14),
+                          ],
+                          _predCard(pred),
+                          if (kb != null) ...[
+                            const SizedBox(height: 14),
+                            _recoSection(pred, kb),
+                          ],
+                        ]
+                      );
+                    },
+                  ),
                   const SizedBox(height: 20),
                   ElevatedButton.icon(
                     onPressed: svc.remeasure,
